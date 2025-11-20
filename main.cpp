@@ -117,9 +117,18 @@ static const int DEFAULT_WINDOW_W = 640;
 static const int DEFAULT_WINDOW_H = 400;
 
 int main(int argc, char *argv[]) {
-	char *dataPath = 0;
+	char *dataPath = SDL_GetPrefPath("", "rawgl");
 	int part = 16001;
-	Language lang = LANG_FR;
+	Language lang = LANG_US;
+	SDL_Locale* locales = SDL_GetPreferredLocales();
+	if (locales) {
+		if (strcmp(locales[0].language, "fr") == 0) lang = LANG_FR;
+		if (strcmp(locales[0].language, "de") == 0) lang = LANG_DE;
+		if (strcmp(locales[0].language, "es") == 0) lang = LANG_ES;
+		if (strcmp(locales[0].language, "it") == 0) lang = LANG_IT;
+		if (strcmp(locales[0].language, "en") == 0) lang = LANG_US;
+		SDL_free(locales); 
+	}
 	int graphicsType = GRAPHICS_GL;
 	DisplayMode dm;
 	dm.mode   = DisplayMode::WINDOWED;

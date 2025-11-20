@@ -1,10 +1,10 @@
 
 SDL_CFLAGS = `sdl2-config --cflags`
-SDL_LIBS = `sdl2-config --libs` -lSDL2_mixer -lGL
+SDL_LIBS = `sdl2-config --libs` -lSDL2_mixer -framework OpenGL
 
 DEFINES = -DBYPASS_PROTECTION -DUSE_GL
 
-CXXFLAGS := -g -O -MMD -Wall -Wpedantic $(SDL_CFLAGS) $(DEFINES)
+CXXFLAGS += -g -O -MMD -Wall -Wpedantic $(SDL_CFLAGS) $(DEFINES)
 
 SRCS = aifcplayer.cpp bitmap.cpp file.cpp engine.cpp graphics_gl.cpp graphics_soft.cpp \
 	script.cpp mixer.cpp pak.cpp resource.cpp resource_nth.cpp \
